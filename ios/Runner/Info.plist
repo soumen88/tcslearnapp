@@ -2,10 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-<key>NSMicrophoneUsageDescription</key>
-	<string>Audio access is required to record voice descriptions of consumed foods.</string>
+    <key>NSMicrophoneUsageDescription</key>
+	<string>Learning about how to use microphone in ios app.</string>
+
 	<key>NSCameraUsageDescription</key>
-	<string>Camera access is required to take photos of the ingredients in a food product.</string>
+	<string>Camera access is required to take photos as we are learning the ios App.</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

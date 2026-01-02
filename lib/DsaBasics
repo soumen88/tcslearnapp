@@ -1,0 +1,32 @@
+String participantOneName = "Akshay";
+  String participantTwoName = "Sandeep";
+  int ageOfAkshay = 30;
+
+  print("Participant one ${participantOneName}");
+  print("Participant one hash code ${participantOneName.hashCode}");
+
+  print("Participant Two ${participantTwoName}");
+  print("Participant two hash code ${participantTwoName.hashCode}");
+
+  String participantThree = participantTwoName + "M";
+  print("Participant three ${participantThree}");
+  print("Participant three hash code ${participantThree.hashCode}");
+
+  List<String> namesList = [];
+  namesList.add("Atul");
+  namesList.add("Sunil");
+  namesList.add("Bessy");
+  namesList.add("Gaurav");
+  namesList.add("Rahul");
+  print("Hash code for names list ${namesList.hashCode}");
+
+
+  List<String> secondNameList = namesList.toList();
+  namesList.add("Sunil");
+  for(var name in secondNameList){
+    print("Second participant name $name");
+  }
+  for(var name in namesList){
+    print("First participant name $name");
+  }
+  print("Hash code for Second names list ${secondNameList.hashCode}");

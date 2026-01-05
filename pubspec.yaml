@@ -44,6 +44,13 @@ dependencies:
   #Display camera output on UI
   camera: ^0.11.3
 
+  #Moving files to internal storage in flutter
+  path_provider: ^2.1.5
+
+  #Both plugins enable the video playing capability in app
+  video_player: ^2.10.1
+  chewie: ^1.13.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

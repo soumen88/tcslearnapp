@@ -18,66 +18,68 @@ class HomeScreen extends StatelessWidget{
         backgroundColor: Colors.deepOrange,
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Welcome To flutter"),
-            Text("15th December, 2025"),
-            ElevatedButton(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Welcome To flutter"),
+              Text("15th December, 2025"),
+              ElevatedButton(
+                  onPressed: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => TimerScreen() ));
+                  },
+                  child: Text("Stopwatch app")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DataStructuresPracticeScreen()));
+                  },
+                  child: Text("Data Structures")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CalculatorScreen()));
+                  },
+                  child: Text("Start Calculator")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                  },
+                  child: Text("Start Login Test")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ListViewDemonstrationScreen()));
+                  },
+                  child: Text("Start Listviews")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => LifeCycleScreen()));
+                  },
+                  child: Text("Lifecycle Example")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => ParentChildLifecycleScreen()));
+                  },
+                  child: Text("Parent child lifecycle example")
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CameraScreen()));
+                  },
+                  child: Text("Start Camera ")
+              ),
+              ElevatedButton(
                 onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => TimerScreen() ));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => CounterTestingScreen()));
                 },
-                child: Text("Stopwatch app")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => DataStructuresPracticeScreen()));
-                },
-                child: Text("Data Structures")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CalculatorScreen()));
-                },
-                child: Text("Start Calculator")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
-                },
-                child: Text("Start Login Test")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ListViewDemonstrationScreen()));
-                },
-                child: Text("Start Listviews")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => LifeCycleScreen()));
-                },
-                child: Text("Lifecycle Example")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => ParentChildLifecycleScreen()));
-                },
-                child: Text("Parent child lifecycle example")
-            ),
-            ElevatedButton(
-                onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => CameraScreen()));
-                },
-                child: Text("Start Camera ")
-            ),
-            ElevatedButton(
-              onPressed: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context) => CounterTestingScreen()));
-              },
-              child: Text("Widget Testing"),
-            )
-          ],
+                child: Text("Widget Testing"),
+              )
+            ],
+          ),
         )
       ),
     );

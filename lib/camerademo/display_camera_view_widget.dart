@@ -1,6 +1,11 @@
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:tcslearnapp/base/logger_utils.dart';
+import 'package:tcslearnapp/camerademo/camera_preview_screen.dart';
+import 'package:tcslearnapp/camerademo/video_preview_screen.dart';
 
 class DisplayCameraViewWidget extends StatefulWidget {
   const DisplayCameraViewWidget({super.key});
@@ -18,6 +23,7 @@ class _DisplayCameraViewWidgetState extends State<DisplayCameraViewWidget> {
   CameraController? _controller;
   final _logger = LoggerUtils();
   final _TAG = "DisplayCameraView";
+  bool isVideoRecordingStarted = false;
   @override
   void initState() {
     initCamera();
@@ -48,9 +54,63 @@ class _DisplayCameraViewWidgetState extends State<DisplayCameraViewWidget> {
   }
 
   ///Step 3 - Shoot an photo
-  Future<void> clickPhoto() async{
+  Future<void> clickPhoto(BuildContext context) async{
     XFile? cameraFile = await _controller?.takePicture();
     _logger.log(TAG: _TAG, message: "Camera file path ${cameraFile?.path}");
+    try{
+      if(cameraFile != null && cameraFile.path.isNotEmpty){
+
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) =>
+            CameraPreviewScreen(
+                filePath: cameraFile.path ?? '',
+                onSaveButtonPress: () async{
+                  final directory = await getApplicationDocumentsDirectory();
+                  final String newFilePath = "${directory.path}/${DateTime.now().microsecondsSinceEpoch}.jpg";
+                  await cameraFile.saveTo(newFilePath);
+                  _logger.log(TAG: _TAG, message: "File path for storage $newFilePath");
+                },
+            )
+        ));
+      }
+    }
+    catch(exception){
+      _logger.log(TAG: _TAG, message: "Storage exception $exception");
+    }
+
+  }
+
+  Future<void> switchCamera() async{
+    if(_selectedCameraId == 0){
+      _selectedCameraId = 1;
+    }
+    else{
+      _selectedCameraId = 0;
+    }
+    await configureCamera(_camerasList[_selectedCameraId]);
+  }
+
+  Future<void> startVideoRecording(BuildContext context) async{
+    await _controller?.startVideoRecording();
+    await Future.delayed(Duration(seconds: 5), () async{
+      XFile? _videoFile = await _controller?.stopVideoRecording();
+      _logger.log(TAG: _TAG, message: "Path for video ${_videoFile?.path}");
+      isVideoRecordingStarted = false;
+      setState(() {
+
+      });
+      Navigator.push(context, MaterialPageRoute(builder: (context) => VideoPreviewScreen(
+          filePath: _videoFile?.path ??'',
+          onSaveButtonPress: () async{
+            final directory = await getApplicationDocumentsDirectory();
+            final String newFilePath = "${directory.path}/${DateTime.now().microsecondsSinceEpoch}.mp4";
+            await _videoFile?.saveTo(newFilePath);
+            _logger.log(TAG: _TAG, message: "File path for storage $newFilePath");
+          },
+      ),
+      )
+      );
+    });
   }
 
   @override
@@ -59,7 +119,7 @@ class _DisplayCameraViewWidgetState extends State<DisplayCameraViewWidget> {
       alignment: Alignment.center,
       children: [
         Positioned.fill(
-            child: showCameraPreview()
+            child: showCameraPreview(context)
         ),
         Positioned(
             bottom: 20,
@@ -75,7 +135,7 @@ class _DisplayCameraViewWidgetState extends State<DisplayCameraViewWidget> {
                 ),
                 GestureDetector(
                   onTap: (){
-                    clickPhoto();
+                    clickPhoto(context);
                   },
                   child: Icon(
                     Icons.circle_outlined,
@@ -86,22 +146,65 @@ class _DisplayCameraViewWidgetState extends State<DisplayCameraViewWidget> {
                 SizedBox(
                   width: 40,
                 ),
-                Icon(
-                  Icons.sync,
+                GestureDetector(
+                  onTap: (){
+                    switchCamera();
+                  },
+                  child: Icon(
+                    Icons.sync,
+                    size: 50,
+                    color: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  width: 40,
+                ),
+
+                GestureDetector(
+                  onTap: (){
+                    isVideoRecordingStarted = !isVideoRecordingStarted;
+                    startVideoRecording(context);
+                    setState(() {
+
+                    });
+                  },
+                  child: isVideoRecordingStarted ? Container(
+                    padding: EdgeInsets.all(20),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.white, // The outline color
+                          width: 2.0, // The outline width
+                        )
+                    ),
+                    child: Icon(
+                      Icons.square,
+                      size: 30,
+                      color: Colors.red,
+                    ),
+                  ) : Icon(
+                  Icons.video_call,
                   size: 50,
                   color: Colors.white,
                 ),
+                )
               ],
             )
+        ),
+        Positioned(
+            top: 50,
+            child: Image.asset('assets/images/white_rectangle.png')
         )
       ],
     );
+    //return showCameraPreview(context);
   }
 
-  Widget showCameraPreview(){
+  Widget showCameraPreview(BuildContext context){
+    bool isLandscape = MediaQuery.of(context).orientation == Orientation.landscape;
     if(_controller != null && _controller!.value.isInitialized){
       return AspectRatio(
-          aspectRatio: _controller!.value.aspectRatio,
+          aspectRatio: isLandscape ? (16/9) : (9/16),
           child: CameraPreview(_controller!),
       );
     }

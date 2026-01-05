@@ -3,7 +3,7 @@ version: 2.1
 jobs:
   test:
     docker:
-      - image: ghcr.io/cirruslabs/flutter:3.35.7
+      - image: ghcr.io/cirruslabs/flutter:3.38.5
     steps:
       - checkout
       - run:
@@ -15,7 +15,7 @@ jobs:
 
   build-apk:
     docker:
-      - image: ghcr.io/cirruslabs/flutter:3.35.7
+      - image: ghcr.io/cirruslabs/flutter:3.38.5
     steps:
       - checkout
       - run:

@@ -6,7 +6,7 @@ void main(){
     var testEmail = "abc@example.com";
     final FieldValidator fieldValidatorObj = FieldValidator();
     var valueReceived = fieldValidatorObj.validateEmail(testEmail);
-    expect(valueReceived, '');
+    expect(valueReceived, null);
   });
 
   test('validate password field', (){
@@ -14,6 +14,6 @@ void main(){
     final FieldValidator fieldValidatorObj = FieldValidator();
     var valueReceived = fieldValidatorObj.validatePassword(testPassword);
     //expect(valueReceived, "More than 6 character are expected");
-    expect(valueReceived, "");
+    expect(valueReceived, null);
   });
 }

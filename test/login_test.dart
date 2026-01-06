@@ -6,8 +6,8 @@ void main(){
     var testEmail = "abc@example.com";
     final FieldValidator fieldValidatorObj = FieldValidator();
     var valueReceived = fieldValidatorObj.validateEmail(testEmail);
-    //expect(valueReceived, null);
-    expect(valueReceived, "");
+    expect(valueReceived, null);
+    //expect(valueReceived, "");
   });
 
   test('validate password field', (){

@@ -10,7 +10,7 @@ jobs:
           name: Get Flutter dependencies
           command: flutter pub get
       - run:
-          name: Run tests
+          name: Run tests inside app
           command: flutter test
 
   build-apk:

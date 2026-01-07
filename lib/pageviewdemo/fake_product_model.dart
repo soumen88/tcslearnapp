@@ -13,5 +13,9 @@ class FakeProductModel {
     required this.discountedPrice
   });
 
+  @override
+  String toString() {
+    return "Product details title $title and its price $actualPrice";
+  }
 
 }

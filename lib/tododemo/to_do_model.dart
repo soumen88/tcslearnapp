@@ -1,0 +1,33 @@
+class ToDoModel {
+  int? userId;
+  int? id;
+  String? title;
+  bool? completed;
+  bool? taskId;
+
+  ToDoModel({this.userId, this.id, this.title, this.completed});
+
+  ToDoModel.fromJson(Map<String, dynamic> json) {
+    userId = json['userId'];
+    id = json['id'];
+    title = json['title'];
+    completed = json['completed'];
+    completed = json['completed'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['userId'] = this.userId;
+    data['id'] = this.id;
+    data['title'] = this.title;
+    data['completed'] = this.completed;
+    data['completed'] = this.completed;
+    return data;
+  }
+
+  @override
+  String toString() {
+
+    return "User id ${this.userId} and title ${this.title} and Id ${this.id} Completed ${this.completed}";
+  }
+}

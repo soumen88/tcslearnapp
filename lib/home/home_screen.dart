@@ -81,6 +81,7 @@ class HomeScreen extends StatelessWidget{
               ),
               ElevatedButton(
                   onPressed: (){
+                    print("Before starting tasks list");
                     Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayTaskListScreen()));
                   },
                   child: Text("Start Todo")

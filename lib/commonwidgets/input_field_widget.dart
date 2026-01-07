@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CalculatorInputField extends StatelessWidget{
+class InputFieldWidget extends StatelessWidget{
   TextEditingController inputController;
-
-  CalculatorInputField({required this.inputController});
+  TextInputType inputType;
+  InputFieldWidget({required this.inputController, this.inputType = TextInputType.number});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: inputController,
-      keyboardType: TextInputType.number,
+      keyboardType: inputType,
       decoration: InputDecoration(
         hint: Text("Enter a number"),
         focusedBorder: OutlineInputBorder(

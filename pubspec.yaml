@@ -51,6 +51,9 @@ dependencies:
   video_player: ^2.10.1
   chewie: ^1.13.0
 
+  #Provider state management
+  provider: ^6.1.5+1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

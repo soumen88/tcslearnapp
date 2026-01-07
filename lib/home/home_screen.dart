@@ -8,6 +8,7 @@ import 'package:tcslearnapp/lifecycle/parent_child_lifecycle_screen.dart';
 import 'package:tcslearnapp/onboarding/login_screen.dart';
 import 'package:tcslearnapp/pageviewdemo/list_view_demonstration_screen.dart';
 import 'package:tcslearnapp/timer/timer_screen.dart';
+import 'package:tcslearnapp/tododemo/display_task_list_screen.dart';
 
 class HomeScreen extends StatelessWidget{
   @override
@@ -77,6 +78,12 @@ class HomeScreen extends StatelessWidget{
                   Navigator.push(context, MaterialPageRoute(builder: (context) => CounterTestingScreen()));
                 },
                 child: Text("Widget Testing"),
+              ),
+              ElevatedButton(
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DisplayTaskListScreen()));
+                  },
+                  child: Text("Start Todo")
               )
             ],
           ),

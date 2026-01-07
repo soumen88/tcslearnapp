@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tcslearnapp/calculator/button_enums.dart';
-import 'package:tcslearnapp/calculator/calculator_input_field.dart';
+import 'package:tcslearnapp/commonwidgets/input_field_widget.dart';
 import 'package:tcslearnapp/calculator/calculator_operations.dart';
 import 'package:tcslearnapp/programmingbasics/athlete.dart';
 import 'package:tcslearnapp/programmingbasics/exercise.dart';
@@ -35,11 +35,11 @@ class _CalculatorScreenState extends State<CalculatorScreen>{
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    CalculatorInputField( inputController: _numberOneController,),
+                    InputFieldWidget( inputController: _numberOneController,),
                     SizedBox(
                       height: 20,
                     ),
-                    CalculatorInputField(inputController: _numberTwoController,),
+                    InputFieldWidget(inputController: _numberTwoController,),
                     SizedBox(
                       height: 20,
                     ),
